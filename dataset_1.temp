@@ -1,0 +1,8 @@
+# Example dataset
+# 8 digit hex number for sheet id (allows over 2 billion unique ids).
+# Immediately after are curly braces ({}). This allows for all the data from that sheet to be stored.
+# Within the curly braces are sets of 3 digit hex numbers (which allow up to 4096 questions per sheet) which denote a question id from a particular sheet.
+# Immediately after the the question id number is a set of parentheses which contain all the information about the question.
+# The parentheses contain a question type id number (2 digit hex for up to 256 types), the answer set, contained within square braces and separated by commas if multiple are there
+# In the event of an image as an answer, a link will be provided by LINK<answer.jpg>
+00000000{000(00,[A]),001(00,[E]),002(01,[This is an open response question]),003(01,[LINK<answer.jpg>])}
