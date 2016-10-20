@@ -11,16 +11,16 @@
 # The next indent is the question id number
 # The second space is the question information (consisting of the question type and the question response (in []))
 00000000
- 000
-  00
-  [A]
  001
   00
-  [E]
+  [A
  002
-  01
-  [This is an open response question]
-# This is a test
+  00
+  [E
  003
   01
-  [LINK<answer.jpg>]
+  [This is an open response question
+# This is a test
+ 004
+  01
+  [LINK<answer.jpg>
