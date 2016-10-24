@@ -6,10 +6,10 @@ class Loader():
 
     def __init__(self, srcFile):
         self.srcFile = srcFile
+        self.sheets = [ ]
 
     def parse(self):
         # load = self.srcFile.readline()
-        sheets = [ ]
         previousSheet = Sheet("00000000") # Create some temp variables until proper checking can be put into place
         previousQuestion = Question("000")
         for line in self.srcFile: # Loop through all the lines in the file
@@ -26,6 +26,8 @@ class Loader():
                 print "Found " + str(count) + " spaces"
                 if count == 0:
                     # This is a sheet id number (universally)
+                    if len(previousSheet.getQuestions()) != 0:
+                        self.sheets.append(previousSheet)
                     previousSheet = Sheet(''.join(lst))
                     print "Created a new sheet element with id: " + str(line)
                 elif count == 1:
@@ -44,12 +46,25 @@ class Loader():
                         del lst[0:2] # Remove the leading spaces
                         previousQuestion.setType(''.join(lst))
                         print "Added type " + ''.join(lst)
-                    previousSheet.setQuestion(previousQuestion.getID,previousQuestion) # Update the question with the new data
+                    previousSheet.setQuestion(previousQuestion.getID,previousQuestion) # Update the question with the new datasets
                     print "Updated question"
             print ""
 
+    def getSheets(self):
+        return self.sheets
+
+    def getSheetByID(self, id):
+        for sheet in self.sheets:
+            if sheet.getSheetID() == id:
+                return sheet
+            else:
+                print str(sheet)
 
 # The main test area
 file = open("test_data.dat")
 loader = Loader(file)
 loader.parse()
+loader.getSheetByID("00000001").getQuestions()
+for question in loader.getSheetByID("00000001").getQuestions():
+    if question.getType() == "01":
+        print question.getAnswer()

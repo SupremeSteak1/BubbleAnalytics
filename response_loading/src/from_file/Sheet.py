@@ -17,3 +17,6 @@ class Sheet():
             if self.questions[i].getID() == questionID:
                 questions[i] = question
                 return
+
+    def getQuestions(self):
+        return self.questions
