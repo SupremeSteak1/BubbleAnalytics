@@ -9,9 +9,10 @@ class Sheet():
     def getSheetID(self):
         return self.sheetID
 
-    def addQuestion(self, question):
+    def addQuestion(self, question, verbose):
         self.questions.append(question)
-        print "Added a question to sheet " + self.getSheetID()
+        if verbose == 1:
+            print "Added a question to sheet " + self.getSheetID()
 
     def setQuestion(self, questionID, question):
         for i in range(0,len(self.questions)):
@@ -19,6 +20,7 @@ class Sheet():
                 questions[i] = question
                 return
 
-    def getQuestions(self):
-        print "Has " + str(len(self.questions)) + " questions in the questions array of sheet " + self.getSheetID()
+    def getQuestions(self, verbose):
+        if verbose == 1:
+            print "Has " + str(len(self.questions)) + " questions in the questions array of sheet " + self.getSheetID()
         return self.questions
