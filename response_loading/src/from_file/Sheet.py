@@ -11,6 +11,7 @@ class Sheet():
 
     def addQuestion(self, question):
         self.questions.append(question)
+        print "Added a question to sheet " + self.getSheetID()
 
     def setQuestion(self, questionID, question):
         for i in range(0,len(self.questions)):
@@ -19,4 +20,5 @@ class Sheet():
                 return
 
     def getQuestions(self):
+        print "Has " + str(len(self.questions)) + " questions in the questions array of sheet " + self.getSheetID()
         return self.questions

@@ -26,8 +26,12 @@ class Loader():
                 print "Found " + str(count) + " spaces"
                 if count == 0:
                     # This is a sheet id number (universally)
+                    print "Entering Bermuda triangle"
                     if len(previousSheet.getQuestions()) != 0:
                         self.sheets.append(previousSheet)
+                        print "YESSSSSSSSSSS" + str(len(previousSheet.getQuestions()))
+                    else:
+                        print "NOOOOOOOOOOOO" + str(len(previousSheet.getQuestions()))
                     previousSheet = Sheet(''.join(lst))
                     print "Created a new sheet element with id: " + str(line)
                 elif count == 1:
@@ -55,10 +59,14 @@ class Loader():
 
     def getSheetByID(self, id):
         for sheet in self.sheets:
-            if sheet.getSheetID() == id:
+            if int(sheet.getSheetID()) == int(id):
+                print "Found match between " + str(id) + " and " + sheet.getSheetID()
                 return sheet
             else:
-                print str(sheet)
+                print "Test" + id
+                print "Test" + sheet.getSheetID();
+                print "Did NOT find match between " + str(id) + " and " + sheet.getSheetID()
+        print "Looking of id " + str(id)
 
 # The main test area
 file = open("test_data.dat")
@@ -66,5 +74,5 @@ loader = Loader(file)
 loader.parse()
 loader.getSheetByID("00000001").getQuestions()
 for question in loader.getSheetByID("00000001").getQuestions():
-    if question.getType() == "01":
+    if int(question.getType()) == 00:
         print question.getAnswer()
