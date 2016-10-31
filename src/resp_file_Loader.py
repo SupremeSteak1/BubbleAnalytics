@@ -1,6 +1,6 @@
 # Find example dataset in root directory named dataset_1.example
-from Sheet import Sheet
-from Question import Question
+from resp_file_Sheet import Sheet
+from resp_file_Question import Question
 
 # Define some nice constants
 VERBOSE_OFF = 0

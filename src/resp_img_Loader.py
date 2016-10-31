@@ -21,6 +21,7 @@ class Loader():
         self.minimumPixels = 400
         self.bubblesPerQuestion = 5
         self.filledInBubbles = {}
+        self.sheetID = "00000000"
 
     def load(self, imagePath):
         # Used to be used when this was a stand alone thing. Now its useless, but I'm afraid to get rid of it
@@ -125,8 +126,12 @@ class Loader():
 
             for (i, bubble) in enumerate(bubbled):
                 if bubbled[i] is not None:
+                    q2 = str(q)
+                    while str(q2) in self.filledInBubbles.keys():
+                        q2=q2+"a"
+
                     # Add this bubble to the dictionary of filled in bubbles
-                    self.filledInBubbles.update({q:bubbled[i][1]})
+                    self.filledInBubbles.update({str(q2):bubbled[i][1]})
 
                     # Draw the outline of bubbles which appear to be filled in
                     cv2.drawContours(paper, [cnts[bubbled[i][1]]], -1, color, 3)
@@ -136,6 +141,17 @@ class Loader():
         cv2.imshow("Result", paper)
         cv2.waitKey(0)
 
-        # Print out the values of the questions and the answers
+        # Print out the values of the questions and the answers for debug purposes
         for i in self.filledInBubbles:
             print(i, self.filledInBubbles[i])
+
+    def save(self, fileName):
+        # Here is where we save the data gathered in the load function to a file
+        saveFile = open(fileName, 'w')
+        saveFile.write(self.sheetID+'\n')
+        count = 0
+        for i in self.filledInBubbles:
+            saveFile.write(' '+str(count)+'\n')
+            saveFile.write('  00\n') # The questions are all of ID 0 right now...
+            saveFile.write('  ['+str(self.filledInBubbles[i])+'\n')
+            count = count + 1
