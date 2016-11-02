@@ -72,6 +72,7 @@ class Loader():
             if int(sheet.getSheetID()) == int(id):
                 return sheet
         print "No sheet with id " + str(id) + " found! Issues will likely arise!"
+        
 
 # The main test area
 file = open("test_data.dat")
