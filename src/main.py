@@ -6,15 +6,23 @@ from WindowManager import WindowManager as GUI
 from Tkinter import Tk, Frame, Checkbutton, BooleanVar, BOTH
 
 # Define some nice constants
-VERBOSE_OFF = 0
-VERBOSE_ON = 1
+VERBOSE_OFF = CHECKBOX_UNCHECKED = 0
+VERBOSE_ON = CHECKBOX_CHECKED = 1
 
+def a():
+    print "a"
 
+def b():
+    print "b"
 
 # Tkinter stuff
 root = Tk()
-root.geometry("250x150+300+300")
-app = GUI(root)
+root.geometry("450x350+300+300")
+window = GUI(root)
+window.addCheckbox("This is the 1st box",10,10,CHECKBOX_CHECKED,a)
+window.addCheckbox("This is the 2nd box",10,40,CHECKBOX_UNCHECKED,b)
+window.addCheckbox("This is the 3rd box",10,70,CHECKBOX_CHECKED,a)
+window.addCheckbox("This is the 4th box",10,100,CHECKBOX_UNCHECKED,b)
 root.mainloop()
 
 """

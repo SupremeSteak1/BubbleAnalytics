@@ -1,12 +1,12 @@
 from Tkinter import Tk, Frame, Checkbutton, BooleanVar, BOTH
 
-class Checkbox():
-    def __init__(self,notself,label,function):
+class Button():
+    def __init__(self,notself,label):
         self.var = BooleanVar()
-        self.cb = Checkbutton(notself,text=label, variable=self.var, command=function)
+        self.button = Checkbutton(notself,text=label, variable=self.var, command=self.onClick)
 
     def get(self):
-        return self.cb
+        return self.button
 
     def onClick(self):
         if self.var.get() == True:

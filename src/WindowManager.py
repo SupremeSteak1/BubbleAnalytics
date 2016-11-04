@@ -12,14 +12,16 @@ class WindowManager(Frame):
         self.pack(fill=BOTH, expand=True)
         self.var = BooleanVar()
 
-        addCheckbox("This is the 2nd box",10,10)
+        #self.addCheckbox("This is the 2nd box",10,10)
 
-        cb = Checkbutton(self, text="This is a checkbox", variable=self.var, command=self.onClick)
-        cb.select()
-        cb.place(x=50,y=50)
+        #cb = Checkbutton(self, text="This is a checkbox", variable=self.var, command=self.onClick)
+        #cb.select()
+        #cb.place(x=50,y=50)
 
-    def addCheckbox(self,text,xc,yc):
-        cb = Checkbox(self,text)
+    def addCheckbox(self,text,xc,yc,toggled,function):
+        cb = Checkbox(self,text,function)
+        if toggled:
+            cb.get().select()
         cb.get().place(x=xc,y=yc)
 
     def onClick(self):
