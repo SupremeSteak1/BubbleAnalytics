@@ -1,5 +1,6 @@
 from Tkinter import Tk, Frame, Checkbutton, BooleanVar, BOTH
 from GUI_element_Checkbox import Checkbox as Checkbox
+from GUI_element_button import Button as Buttonb
 
 class WindowManager(Frame):
     def __init__(self, parent):
@@ -23,6 +24,10 @@ class WindowManager(Frame):
         if toggled:
             cb.get().select()
         cb.get().place(x=xc,y=yc)
+
+    def addButton(self,label,xc,yc,function):
+        bt = Buttonb(self,label,function)
+        bt.get().place(x=xc,y=yc)
 
     def onClick(self):
         if self.var.get() == True:

@@ -15,6 +15,9 @@ def a():
 def b():
     print "b"
 
+def c():
+    print "c"
+
 # Tkinter stuff
 root = Tk()
 root.geometry("450x350+300+300")
@@ -23,6 +26,7 @@ window.addCheckbox("This is the 1st box",10,10,CHECKBOX_CHECKED,a)
 window.addCheckbox("This is the 2nd box",10,40,CHECKBOX_UNCHECKED,b)
 window.addCheckbox("This is the 3rd box",10,70,CHECKBOX_CHECKED,a)
 window.addCheckbox("This is the 4th box",10,100,CHECKBOX_UNCHECKED,b)
+window.addButton("Test button 1",10,130,c)
 root.mainloop()
 
 """

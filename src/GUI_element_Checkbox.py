@@ -7,9 +7,3 @@ class Checkbox():
 
     def get(self):
         return self.cb
-
-    def onClick(self):
-        if self.var.get() == True:
-            print "Button pressed"
-        else:
-            print "Button depressed"
