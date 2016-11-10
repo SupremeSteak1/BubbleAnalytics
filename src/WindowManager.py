@@ -25,8 +25,8 @@ class WindowManager(Frame):
             cb.get().select()
         cb.get().place(x=xc,y=yc)
 
-    def addButton(self,label,xc,yc,function):
-        bt = Buttonb(self,label,function)
+    def addButton(self,label,xc,yc,state,function):
+        bt = Buttonb(self,label,state,function)
         bt.get().place(x=xc,y=yc)
 
     def onClick(self):
