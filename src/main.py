@@ -67,25 +67,22 @@ class Main():
         print "c"
 
     def askOpenFile(self):
-        # This is the data file
-        df = tkFileDialog.askopenfile(mode='r', **self.file_opt)
-        #try:
-        print "Loading " + str(df.name)
-        loader = FileLoader(df)
-        loader.parse(self.VERBOSE_OFF)
-        #except:
-        print "Broken while loading!"
-        print self.sid.get().get()
-        print self.qid.get().get()
-        #try:
-        for question in loader.getSheetByID(self.sid.get().get()).getQuestions(self.VERBOSE_OFF):
-                #try:
+        try:
+            # This is the data file
+            df = tkFileDialog.askopenfile(mode='r', **self.file_opt)
+        except:
+            print "File dialogue failure at main.py ~ line 74"
+        try:
+            loader = FileLoader(df)
+            loader.parse(self.VERBOSE_OFF)
+        except:
+            print "Failure loading " + df.name + " at main.py ~ line 79"
+        try:
+            for question in loader.getSheetByID(self.sid.get().get()).getQuestions(self.VERBOSE_OFF):
                 if int(question.getID()) == int(self.qid.get().get()):
                     print "Answer to sheetID " + str(self.sid.get().get()) + ", questionID " + str(self.qid.get().get()) + " is " + str(question.getAnswer())
-                #except:
-                print "Stage 2"
-        #except:
-        print "Your file doesn't work very well my good sir"
+        except:
+            print "Failure reading information at main.py ~ line 85"
 
 
 Main()
