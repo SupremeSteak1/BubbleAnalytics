@@ -16,34 +16,6 @@ class MainWindowManager(Frame):
         self.pack(fill=BOTH, expand=True)
         self.var = BooleanVar()
 
-        # Define options for opening or saving a file... because I'm making the assumption the user will open a file
-        self.file_opt = options = {}
-        options['defaultextension'] = '.dat'
-        options['filetypes'] = [('all files', '.*'), ('text files', '.txt'), ('data files', '.dat')]
-        options['initialdir'] = 'C:\\'
-        options['initialfile'] = 'unspecified.txt'
-        options['parent'] = self
-        options['title'] = 'EXAMPLE TITLE!! REPLACE SOON (OR LATER)'
-
-        # Defining options for opening a directory
-        self.dir_opt = options = {}
-        options['initialdir'] = 'C:\\'
-        options['mustexist'] = False
-        options['parent'] = self
-        options['title'] = 'ALSO REPLACE THIS TEMP TITLE!! IT TOO IS A BAD EXAMPLE'
-
-    def askOpenFile(self):
-        # Returns an opened file in read mode.
-        return tkFileDialog.askopenfile(mode='r', **self.file_opt)
-
-    def askSaveAsFile(self):
-        # Returns an opened file in write mode.
-        return tkFileDialog.asksaveasfile(mode='w', **self.file_opt)
-
-    def askDirectory(self):
-        # Returns a selected directoryname.
-        return tkFileDialog.askdirectory(**self.dir_opt)
-
     def addCheckbox(self,text,xc,yc,toggled,function):
         cb = Checkbox(self,text,function)
         if toggled:
