@@ -21,10 +21,12 @@ class MainWindowManager(Frame):
         if toggled:
             cb.get().select()
         cb.get().place(x=xc,y=yc)
+        return cb
 
     def addButton(self,label,xc,yc,state,function):
         bt = Buttonb(self,label,state,function)
         bt.get().place(x=xc,y=yc)
+        return bt
 
     def addLabel(self,label,xc,yc):
         lb = Label(self,label)
