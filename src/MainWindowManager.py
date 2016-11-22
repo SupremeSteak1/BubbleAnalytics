@@ -16,6 +16,9 @@ class MainWindowManager(Frame):
         self.pack(fill=BOTH, expand=True)
         self.var = BooleanVar()
 
+    def isVisible(self,vis):
+        self.withdraw()
+
     def addCheckbox(self,text,xc,yc,toggled,function):
         cb = Checkbox(self,text,function)
         if toggled:
