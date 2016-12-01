@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <div id="stylesheetblarg">
+      <style>
+      #link {
+        font: bold 11px Arial;
+        text-decoration: none;
+        background-color: #EEEEEE;
+        color: #333333;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+      }
+      </style>
+    </div>
+    <script type="text/javascript">
+      function test() {
+        alert("TEST!");
+        document.getElementById("cell0-0").innerHTML = "Sucess!";
+      }
+      //document.getElementById("")
+    </script>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td id="cell0-0">(0,0)</td>
+        <td>(1,0)</td>
+      </tr>
+      <tr>
+        <td>(0,1)</td>
+        <td>(1,1)</td>
+      </tr>
+    </table>
+
+    <a id="link" href="BackEnd.say_hello_world" data-bind="true">Click to say "Hello, world"</a>
+  </body>
+</html>

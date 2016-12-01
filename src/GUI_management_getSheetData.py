@@ -1,11 +1,10 @@
 from Tkinter import Tk, Frame, Checkbutton, BooleanVar, BOTH
 from MainWindowManager import MainWindowManager as GUI
-from GUI_management_getSheetData import GUISheetData as GUI2
 from resp_file_Loader import Loader as FileLoader
 import tkFileDialog
 import time
 
-class GUIHome:
+class GUISheetData:
 
     def __init__(self):
         # Define some nice constants
@@ -17,13 +16,13 @@ class GUIHome:
 
         # Tkinter stuff
         self.root = Tk()
-        self.root.geometry("850x350+300+300")
+        self.root.geometry("260x200+300+300")
         self.window = GUI(self.root)
 
-        self.window.addLabel("Find sheetID:",10,130)
-        self.sid = self.window.addSpinner(0,10,10,160)
-        self.window.addLabel("Find questionID:",10,190)
-        self.qid = self.window.addSpinner(0,10,10,220)
+        self.window.addLabel("Find sheetID:",10,10)
+        self.sid = self.window.addSpinner(0,10,10,30)
+        self.window.addLabel("Find questionID:",10,60)
+        self.qid = self.window.addSpinner(0,10,10,80)
 
         # Define options for opening or saving a file... because I'm making the assumption the user will open a file
         self.file_opt = self.options = {}
@@ -32,32 +31,16 @@ class GUIHome:
         self.options['initialdir'] = ''
         self.options['initialfile'] = '*.dat'
         self.options['parent'] = self.window
-        self.options['title'] = 'BASS | Bubble Analytics and Storage System'
+        self.options['title'] = 'EXAMPLE TITLE!! REPLACE SOON (OR LATER)'
 
-        self.window.addLabel("Bubble Analytics and Storage System Main Page",10,10)
-        self.window.addButton("Retrieve Single Question Response",10,40,self.BUTTON_ENABLED,self.singleQuestionResponse)
-        #self.window.addCheckbox("This is the 1st box",10,10,self.CHECKBOX_CHECKED,self.a)
-        #self.window.addCheckbox("This is the 2nd box",10,40,self.CHECKBOX_UNCHECKED,self.b)
-        #self.window.addCheckbox("This is the 3rd box",10,70,self.CHECKBOX_CHECKED,self.a)
-        #self.window.addCheckbox("This is the 4th box",10,100,self.CHECKBOX_UNCHECKED,self.b)
-
-        #self.window.addButton("Load data from a file",10,250,self.BUTTON_ENABLED,self.askOpenFile)
-        #self.window.addButton("Hide window (hopefully)",10,280,self.BUTTON_ENABLED,self.hideWindow)
+        self.window.addButton("Load data from a file",10,110,self.BUTTON_ENABLED,self.askOpenFile)
+        self.response = self.window.addLabel("Enter information to get a response!",10,150)
         self.root.mainloop()
-
-    def singleQuestionResponse(self):
-        self.hideWindow()
-        gui2 = GUI2()
-        self.showWindow()
-
-    def a(self):
-        print "a"
-
-    def b(self):
-        print "b"
 
     def hideWindow(self):
         self.root.withdraw()
+        time.sleep(2)
+        self.showWindow()
 
     def showWindow(self):
         self.root.update()
@@ -72,5 +55,7 @@ class GUIHome:
             for question in loader.getSheetByID(self.sid.get().get()).getQuestions(self.VERBOSE_OFF):
                 if int(question.getID()) == int(self.qid.get().get()):
                     print "Answer to sheetID " + str(self.sid.get().get()) + ", questionID " + str(self.qid.get().get()) + " is " + str(question.getAnswer())
+                    self.response.set("Answer to sheetID " + str(self.sid.get().get()) + ", questionID " + str(self.qid.get().get()) + " is " + str(question.getAnswer()))
         except:
             print "Failure loading, parsing or reading information at main.py ~ lines 61-67"
+            self.response.set("Error loading or parsing data.")
