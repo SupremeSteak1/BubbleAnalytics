@@ -17,25 +17,27 @@
       </style>
     </div>
     <script type="text/javascript">
-      function test() {
-        alert("TEST!");
-        document.getElementById("cell0-0").innerHTML = "Sucess!";
+      function setCell(x,y,text) {
+        if(!document.getElementById("row"+y)) {
+          alert("Missing row "+y);
+          var tmp = document.getElementById("table0").insertRow(y);
+          tmp.id = "row"+y;
+        }
+        if(!document.getElementById("cell"+x+"-"+y)) {
+          alert("Missing cell "+x+","+y+"");
+          var tmp = document.getElementById("row"+y).insertCell(x);
+          tmp.id = "cell"+x+"-"+y;
+        }
+        document.getElementById("cell"+x+"-"+y+"").innerHTML = text;
       }
-      //document.getElementById("")
     </script>
   </head>
   <body>
-    <table border="1">
-      <tr>
-        <td id="cell0-0">(0,0)</td>
-        <td>(1,0)</td>
-      </tr>
-      <tr>
-        <td>(0,1)</td>
-        <td>(1,1)</td>
-      </tr>
+    <h2>Data from a predetermined sheet.</h2>
+    <table id="table0" border="1">
+      <!--This will be changed by the javascript stuff up top. Pretty cool actually!-->
     </table>
 
-    <a id="link" href="BackEnd.say_hello_world" data-bind="true">Click to say "Hello, world"</a>
+    <a id="link" href="BackEnd.say_hello_world" data-bind="true">Click to put a bunch of arbitrary text in the above table!</a>
   </body>
 </html>
