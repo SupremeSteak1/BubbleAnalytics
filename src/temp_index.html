@@ -18,15 +18,26 @@
     </div>
     <script type="text/javascript">
       function setCell(x,y,text) {
+        //alert("working on ("+x+","+y+") to enter "+text);
         if(!document.getElementById("row"+y)) {
-          alert("Missing row "+y);
-          var tmp = document.getElementById("table0").insertRow(y);
-          tmp.id = "row"+y;
+          //alert("Missing row "+y);
+          for(i = 0; i <= y; i++) {
+            if(!document.getElementById("row"+i)) {
+              var tmp = document.getElementById("table0").insertRow(i);
+              tmp.id = "row"+i;
+            }
+          }
         }
         if(!document.getElementById("cell"+x+"-"+y)) {
-          alert("Missing cell "+x+","+y+"");
-          var tmp = document.getElementById("row"+y).insertCell(x);
-          tmp.id = "cell"+x+"-"+y;
+          //alert("Missing cell "+x+","+y+"");
+          for(x2 = 0; x2 <= x; x2++) {
+            for(y2 = 0; y2 <= y; y2++) {
+              if(!document.getElementById("cell"+x2+"-"+y2)) {
+                var tmp = document.getElementById("row"+y2).insertCell(x2);
+                tmp.id = "cell"+x2+"-"+y2;
+              }
+            }
+          }
         }
         document.getElementById("cell"+x+"-"+y+"").innerHTML = text;
       }
@@ -34,6 +45,8 @@
   </head>
   <body>
     <h2>Data from a predetermined sheet.</h2>
+    <h4>Enter the file directory:</h4>
+    <input type="text" id="dirInp"></input>
     <table id="table0" border="1">
       <!--This will be changed by the javascript stuff up top. Pretty cool actually!-->
     </table>

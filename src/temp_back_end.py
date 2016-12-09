@@ -11,21 +11,36 @@ class BackEnd(htmlPy.Object):
         super(BackEnd, self).__init__()
         self.app = app
 
+    def setCell(self, x, y, value):
+        self.app.evaluate_javascript("setCell( \""+str(x)+"\" , \""+str(y)+"\" , \""+str(value)+"\" );")
+
     @htmlPy.Slot()
     def say_hello_world(self):
-        self.file = open("save_file.dat")
+        dataFileName = "test_data.dat"
+        #dataFileName = str(self.app.evaluate_javascript("document.getElementById(\"dirInp\").value"))
+        self.file = open(dataFileName)
         self.loader = FileLoader(self.file)
         self.loader.parse(self.VERBOSE_OFF)
         x = 0
         for s in self.loader.getSheets():
             x = x + 1
+            self.setCell(x,0,"Sheet "+str(x))
             y = 0
             for question in s.getQuestions(self.VERBOSE_OFF):
                 y = y + 1
-                self.app.evaluate_javascript("setCell( \""+str(x-1)+"\" , \""+str(y-1)+"\" , \""+"Label "+str(x-1)+", "+str(y-1)+"\" );")
-                print("setCell( \""+str(x)+"\" , \""+str(y)+"\" , \""+str(question.getAnswer().rstrip())+"\" );")
-                self.app.evaluate_javascript("setCell( \""+str(x)+"\" , \""+str(y)+"\" , \""+str(question.getAnswer().rstrip())+"\" );")
+                self.app.evaluate_javascript("setCell( \""+str(0)+"\" , \""+str(y)+"\" , \""+"Answer "+str(y)+"\" );")
+        self.file = open(dataFileName)
+        self.loader = FileLoader(self.file)
+        self.loader.parse(self.VERBOSE_OFF)
+        x = 0
+        for s in self.loader.getSheets():
+            x = x + 1
 
+            y = 0
+            for question in s.getQuestions(self.VERBOSE_OFF):
+                y = y + 1
+                print("setCell( \""+str(x)+"\" , \""+str(y)+"\" , \""+str(question.getAnswer().rstrip())+"\" );")
+                self.setCell(x,y,question.getAnswer().rstrip())
         #self.app.html = u"Hello, world"
         """
         x = 0;
